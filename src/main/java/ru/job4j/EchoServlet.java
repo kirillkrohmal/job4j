@@ -9,11 +9,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class EchoServlet extends HttpServlet {
+
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.setContentType("text/html");
-        PrintWriter writer = new PrintWriter(res.getOutputStream());
-        writer.append("hello world");
-        writer.flush();
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        req.setAttribute("users", UserStorage.getInstance().getUserList());
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(req, res);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        User user = new User(req.getParameter("login"), req.getParameter("email"));
+        UserStorage.getInstance().add(user);
+        resp.sendRedirect(String.format("%s%s", req.getContextPath(), "/echo"));
     }
 }
