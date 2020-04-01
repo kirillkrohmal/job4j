@@ -6,21 +6,23 @@
 </head>
 <body>
 
-<table border="1">
-    <td>login</td>
-    <td>email</td>
-    <%--@elvariable id="users" type="java.util.List"--%>
-    <c:forEach items="${users}" var="user">
-        <tr>
-            <td><c:out value="${user.login}"/>></td>
-            <td><c:out value="${user.email}"/></td>
-        </tr>
-    </c:forEach>
-</table>
 
-<ul>
-    <li><a href="<%=request.getContextPath()%>/add">Add new User</a></li>
-</ul>
+<form action="<%=request.getContextPath()%>/echo" method="get">
+    <table border="1">
+        <td>login</td>
+        <td>email</td>
+        <%--@elvariable id="users" type="java.util.List"--%>
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td><c:out value="${user.login}"/>></td>
+                <td><c:out value="${user.email}"/></td>
+            </tr>
+        </c:forEach>
+    </table>
 
+    <ul>
+        <li><a href="<%=request.getContextPath()%>/add">Add new User</a></li>
+    </ul>
+</form>
 </body>
 </html>
