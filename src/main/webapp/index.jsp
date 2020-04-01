@@ -6,29 +6,21 @@
 </head>
 <body>
 
-<form action="${pageContext.servletContext.contextPath}/echo" method="post">
-    Login : <label>
-    <input type="text" name="login">
-</label><br/>
-    Email : <label>
-    <input type="text" name="email">
-</label><br/>
-    <input type="submit">
-</form>
-<br/>
-
-<table>
+<table border="1">
     <td>login</td>
     <td>email</td>
     <%--@elvariable id="users" type="java.util.List"--%>
-    <c:forEach items="${users}" var="user" varStatus="status">
+    <c:forEach items="${users}" var="user">
         <tr>
             <td><c:out value="${user.login}"/>></td>
             <td><c:out value="${user.email}"/></td>
         </tr>
     </c:forEach>
-
 </table>
+
+<ul>
+    <li><a href="<%=request.getContextPath()%>/add">Add new User</a></li>
+</ul>
 
 </body>
 </html>

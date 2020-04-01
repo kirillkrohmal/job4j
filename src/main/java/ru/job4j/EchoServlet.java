@@ -16,12 +16,4 @@ public class EchoServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, res);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        User user = new User(req.getParameter("login"), req.getParameter("email"));
-        UserStorage.getInstance().add(user);
-        resp.sendRedirect(String.format("%s%s", req.getContextPath(), "/echo"));
-    }
 }

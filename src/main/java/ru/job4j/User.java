@@ -1,8 +1,8 @@
 package ru.job4j;
 
 public class User {
-    String login;
-    String email;
+    private String login;
+    private String email;
 
     public User() {
     }
